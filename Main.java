@@ -7,3 +7,5 @@ public class Main {
         name = "Alex";
         System.out.println(name + " " + age);
     }
+    {rdscercrec};
+
