@@ -7,8 +7,3 @@ public class Main {
         name = "Alex";
         System.out.println(name + " " + age);
     }
-
-    public static void main(String[] args) {
-        printNameAndAge();
-    }
-}
