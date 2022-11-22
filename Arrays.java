@@ -7,8 +7,8 @@ public class Arrays {
         for (int i = 1; i < numbers.length; i++) {
             numbers[i] = i;
             sum += numbers[i];
-            average = sum / numbers.length;
             }
+        average = sum / numbers.length;
         System.out.println(average);
 
 
