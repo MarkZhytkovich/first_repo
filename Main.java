@@ -10,5 +10,8 @@ public class Main {
 
         Car mercedes = new Car(7, 200,5);
         mercedes.displayInfo();
+
+        Sun.daybreak(789);
+
     }
 }
