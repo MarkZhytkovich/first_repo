@@ -15,5 +15,18 @@ public class Main {
         Sun.daybreak();
         Sun.sunrisesCount();
 
+
+        Vet vet = new Vet();
+        Animal[] animals = new Animal[4];
+        animals[0] = new Dog("Minsk", "Тузик", "Мясо");
+        animals[1] = new Cat("Brest", "Барсик", "Колбаса");
+        animals[2] = new Parrot("Grodno", "Кеша", "Пшено");
+        animals[3] = new Horse("Gomel", "Саша", "Овес");
+
+        for (Animal animal : animals) {
+            vet.treatAnimal(animal);
+        }
+
+
     }
 }
