@@ -13,6 +13,6 @@ public class Locators {
     By allElements = By.cssSelector("*");
     By addToCart =  By.cssSelector("#add-to-cart");
     By buttons = By.cssSelector("#header_container button");
-    By productName = By.cssSelector("div[class=\"inventory_item_name\"]");
+    By productName = By.cssSelector("div[class='inventory_item_name']");
     By findCart = By.cssSelector("button[data-test]");
 }
