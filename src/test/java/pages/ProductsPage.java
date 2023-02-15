@@ -20,6 +20,7 @@ public class ProductsPage extends BasePage {
     private SelenideElement burgerMenuButton = $(By.id("react-burger-menu-btn"));
     private SelenideElement logoutButton = $(By.id("logout_sidebar_link"));
     private SelenideElement selector = $(By.tagName("select"));
+
     private ElementsCollection pricesCollection = $$x("//div[@class='inventory_item_price']");
     private SelenideElement firstProduct = $(By.xpath("(//div[@class='inventory_item_name'])[1]"));
     private SelenideElement sauceJacket = $(By.xpath("//div[contains (text(), 'Sauce Labs Fleece Jacket')]"));
@@ -63,7 +64,7 @@ public class ProductsPage extends BasePage {
     }
 
     public void getAllPrices() {
-        Selenide.$$x("//div[@class='inventory_item_price");
+        $$x("//div[@class='inventory_item_price");
     }
 
     public boolean checkHighestPrice() {
@@ -73,5 +74,4 @@ public class ProductsPage extends BasePage {
     public boolean checkLowestPrice() {
         return sauceOnesie.equals(firstProduct);
     }
-
 }
