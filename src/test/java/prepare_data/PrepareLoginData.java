@@ -60,4 +60,36 @@ public class PrepareLoginData {
                 .password(TestDataGenerator.generateLiteralPassword())
                 .build();
     }
+
+    public static SwagLabsLoginModel getUserWithEmptyInputs() {
+        return SwagLabsLoginModel
+                .builder()
+                .username("")
+                .password("")
+                .build();
+    }
+
+    public static SwagLabsLoginModel getUserWithoutUsername() {
+        return SwagLabsLoginModel
+                .builder()
+                .username("")
+                .password("secret_sauce")
+                .build();
+    }
+
+    public static SwagLabsLoginModel getUserWithoutPassword() {
+        return SwagLabsLoginModel
+                .builder()
+                .username("standard_user")
+                .password("")
+                .build();
+    }
+
+    public static SwagLabsLoginModel getUserWithInvalidCredentials() {
+        return SwagLabsLoginModel
+                .builder()
+                .username(TestDataGenerator.generateUsername())
+                .password(TestDataGenerator.generateLiteralPassword())
+                .build();
+    }
 }

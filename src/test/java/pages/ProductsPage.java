@@ -1,12 +1,8 @@
 package pages;
 
-
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.selector.ByText;
 import org.openqa.selenium.By;
-
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -25,6 +21,7 @@ public class ProductsPage extends BasePage {
     private SelenideElement firstProduct = $(By.xpath("(//div[@class='inventory_item_name'])[1]"));
     private SelenideElement sauceJacket = $(By.xpath("//div[contains (text(), 'Sauce Labs Fleece Jacket')]"));
     private SelenideElement sauceOnesie = $(By.xpath("//div[contains (text(), 'Sauce Labs Onesie')]"));
+    private SelenideElement pageTitle = $(By.xpath("//span[@class='title']"));
 
 
     public void clickAddBackpack() {
@@ -73,5 +70,9 @@ public class ProductsPage extends BasePage {
 
     public boolean checkLowestPrice() {
         return sauceOnesie.equals(firstProduct);
+    }
+
+    public boolean checkPageTitle() {
+        return pageTitle.isDisplayed();
     }
 }
