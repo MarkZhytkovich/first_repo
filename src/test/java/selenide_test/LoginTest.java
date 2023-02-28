@@ -1,40 +1,38 @@
 package selenide_test;
 
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.selector.ByText;
-import org.openqa.selenium.By;
+import models.SwagLabsLoginModel;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pages.CartPage;
 import pages.LoginPage;
 import pages.ProductsPage;
+import prepare_data.PrepareLoginData;
 import steps.LoginPageSteps;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-
 public class LoginTest {
-
     @Test
     public void loginTest() {
-        open("https://www.saucedemo.com/");
-        $(By.id("user-name")).sendKeys("standard_user");
-        $(By.id("password")).sendKeys("secret_sauce");
-        $(By.id("login-button")).click();
-        $(By.id("add-to-cart-sauce-labs-backpack")).click();
-        $(By.xpath("//a[@class='shopping_cart_link']")).click();
-        SelenideElement sauceBackpack = $(new ByText("Sauce Labs Backpack"));
-        Assert.assertTrue(sauceBackpack.isDisplayed());
+        LoginPageSteps loginPageSteps = new LoginPageSteps();
+        loginPageSteps.login(System.getProperty("username"), System.getProperty("password"));
+        ProductsPage productsPage = new ProductsPage();
+        Assert.assertTrue(productsPage.checkPageTitle());
     }
 
-    @Test
-    public void loginTestRefactored() {
+    @Test(dataProvider = "InvalidLoginData")
+    public void loginValidationTest(SwagLabsLoginModel swagLabsLoginModel) {
         LoginPageSteps loginPageSteps = new LoginPageSteps();
-        loginPageSteps.login("standard_user", "secret_sauce");
-        ProductsPage productsPage = new ProductsPage();
-        productsPage.clickAddBackpack();
-        productsPage.openCart();
-        CartPage cartPage = new CartPage();
-        Assert.assertTrue(cartPage.checkBackpack());
+        loginPageSteps.login(swagLabsLoginModel.getUsername(), swagLabsLoginModel.getPassword());
+        LoginPage loginPage = new LoginPage();
+        Assert.assertTrue(loginPage.checkErrorMessage());
+    }
+
+    @DataProvider(name ="InvalidLoginData")
+    public Object[][] input(){
+        return new Object[][]{
+                {PrepareLoginData.getUserWithEmptyInputs()},
+                {PrepareLoginData.getUserWithoutPassword()},
+                {PrepareLoginData.getUserWithoutUsername()},
+                {PrepareLoginData.getUserWithInvalidCredentials()}
+        };
     }
 }
