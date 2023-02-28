@@ -1,6 +1,5 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
@@ -14,6 +13,7 @@ public class LoginPage extends BasePage {
     private SelenideElement usernameInputField = $(By.id("user-name"));
     private SelenideElement passwordInputField = $(By.id("password"));
     private SelenideElement loginButton = $(By.id("login-button"));
+    private SelenideElement errorMessage = $(By.xpath("//h3[@data-test='error']"));
 
     public void openPage() {
         open(LOGIN_URl);
@@ -39,5 +39,9 @@ public class LoginPage extends BasePage {
 
     public boolean checkLoginButton() {
         return loginButton.isDisplayed();
+    }
+
+    public boolean checkErrorMessage() {
+        return errorMessage.isDisplayed();
     }
 }
