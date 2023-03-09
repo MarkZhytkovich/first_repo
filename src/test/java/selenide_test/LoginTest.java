@@ -1,5 +1,9 @@
 package selenide_test;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import lombok.extern.log4j.Log4j2;
 import models.SwagLabsLoginModel;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -9,9 +13,13 @@ import pages.ProductsPage;
 import prepare_data.PrepareLoginData;
 import steps.LoginPageSteps;
 
-public class LoginTest {
+@Log4j2
+public class LoginTest extends BaseTest {
     @Test
+    @Description("Log into swag labs account")
+    @Severity(SeverityLevel.BLOCKER)
     public void loginTest() {
+        log.info("Log into account");
         LoginPageSteps loginPageSteps = new LoginPageSteps();
         loginPageSteps.login(System.getProperty("username"), System.getProperty("password"));
         ProductsPage productsPage = new ProductsPage();
@@ -19,6 +27,8 @@ public class LoginTest {
     }
 
     @Test(dataProvider = "InvalidLoginData")
+    @Description("Log into swag labs account using invalid credentials")
+    @Severity(SeverityLevel.NORMAL)
     public void loginValidationTest(SwagLabsLoginModel swagLabsLoginModel) {
         LoginPageSteps loginPageSteps = new LoginPageSteps();
         loginPageSteps.login(swagLabsLoginModel.getUsername(), swagLabsLoginModel.getPassword());
